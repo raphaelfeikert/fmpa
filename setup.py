@@ -5,13 +5,12 @@ setup(
   version = '0.1',      
   license='MIT',        
   description = 'wrapper for the financial modelling prep api',   
-  url = 'https://github.com/user/reponame',   
-  download_url = 'https://github.com/user/reponame/archive/v_01.tar.gz',    
+  url = 'https://github.com/raphaelfeikert/fmpa',   
+  download_url = 'https://github.com/raphaelfeikert/fmpa/archive/v_01.tar.gz',    
   install_requires=[            
           'requests',
           'numpy',
-          'pandas',
-          'json'
+          'pandas'         
       ],
   classifiers=[
     'Development Status :: 3 - Alpha',      
