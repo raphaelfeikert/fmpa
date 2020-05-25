@@ -1,6 +1,8 @@
 import requests
 import pandas as pd
 import numpy as np
+https://financialmodelingprep.com/api/v3/profile/AAPL?apikey=3b4daf218714762f63ff568c86e2083c
+
 
 def endpoint_handler(endpoint):
         base_url = "https://financialmodellingprep.com/api/v3/"
@@ -34,58 +36,58 @@ class Company:
 
     #financial statements:
     def inc_stmt(self):
-        response = endpoint_handler("financials/income-statement/{}".format(self.symb))
+        response = endpoint_handler("financials/income-statement/{}?apikey={}".format(self.symb, TOKEN))
         return response
 
     def bal_stmt(self, df=None):
-        response = endpoint_handler("financials/balance-sheet-statement/{}".format(self.symb))
+        response = endpoint_handler("financials/balance-sheet-statement/{}?apikey={}".format(self.symb, TOKEN))
         if df==None:
             return response['financials']
         else:
             return make_df(response['financials'])
 
     def cf_stmt(self):
-        response = endpoint_handler("financials/cash-flow-statement/{}".format(self.symb))
+        response = endpoint_handler("financials/cash-flow-statement/{}?apikey={}".format(self.symb, TOKEN))
         return response
 
     #financial ratios:
     def fin_ratios(self):
-        response = endpoint_handler("financial-ratios/{}".format(self.symb))
+        response = endpoint_handler("financial-ratios/{}?apikey={}".format(self.symb, TOKEN))
         return response
 
     #company-enterprise-value:
     def entpr_val(self):
-        response = endpoint_handler("enterprise-value/{}".format(self.symb))
+        response = endpoint_handler("enterprise-value/{}?apikey={}".format(self.symb, TOKEN))
         return response
 
     #company key metrics:
     def entpr_keymetr(self):
-        response = endpoint_handler("company-key-metrics/{}".format(self.symb))
+        response = endpoint_handler("company-key-metrics/{}?apikey={}".format(self.symb, TOKEN)))
         return response
 
     #company financial growth:
     def fin_grth(self):
-        response = endpoint_handler("financial-statement-growth/{}".format(self.symb))
+        response = endpoint_handler("financial-statement-growth/{}?apikey={}".format(self.symb, TOKEN))
         return response
 
     #company rating:
     def rating(self):
-        response = endpoint_handler("company/rating/{}".format(self.symb))
+        response = endpoint_handler("company/rating/{}?apikey={}".format(self.symb, TOKEN))
         return response
 
     #discounted cash flow value:
     def dcf(self):
-        response = endpoint_handler("company/discounted-cash-flow/{}".format(self.symb))
+        response = endpoint_handler("company/discounted-cash-flow/{}?apikey={}".format(self.symb, TOKEN))
         return response
 
     #historical dcf:
     def hist_dcf(self):
-        response = endpoint_handler("company/historical-discounted-cash-flow/{}".format(self.symb))
+        response = endpoint_handler("company/historical-discounted-cash-flow/{}?apikey={}".format(self.symb, TOKEN))
         return response
 
     #realtime stockprice:
     def rlt_price(self):
-        response = endpoint_handler("stock/real-time-price/{}".format(self.symb))
+        response = endpoint_handler("stock/real-time-price/{}?apikey={}".format(self.symb, TOKEN))
         return response['price']
 
 
