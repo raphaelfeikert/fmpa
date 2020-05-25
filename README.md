@@ -1,1 +1,1 @@
-fmpa
+pip install fmpa
