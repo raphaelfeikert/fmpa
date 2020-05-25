@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
   name = 'fmpa',         
   packages = ['fmpa'],   
-  version = '0.1',      
+  version = '0.2',      
   license='MIT',        
   description = 'wrapper for the financial modelling prep api',   
   url = 'https://github.com/raphaelfeikert/fmpa',   
