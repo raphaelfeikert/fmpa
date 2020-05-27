@@ -4,16 +4,12 @@ setup(
   packages = ['fmpa'],   
   version = '0.5',      
   license='MIT',        
-  description = 'wrapper for the financial modelling prep api',   
+  description = 'wrapper for the financial modelling prep api', 
   author = "RAPHAEL FEIKERT",
   author_email = 'r.feikert@yahoo.de',
   url = 'https://github.com/raphaelfeikert/fmpa',   
   download_url = 'https://github.com/raphaelfeikert/fmpa/archive/v_05.tar.gz',    
-  install_requires=[            
-          'requests',
-          'numpy',
-          'pandas'         
-      ],
+  install_requires=['requests'],
   classifiers=[
     'Development Status :: 3 - Alpha',      
     'Intended Audience :: Developers',      
