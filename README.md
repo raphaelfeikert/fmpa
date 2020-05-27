@@ -8,7 +8,7 @@
 
 ```python
 
-import fmpa
+from fmpa import FMPA
 
 api_key = "your api-key"
 
