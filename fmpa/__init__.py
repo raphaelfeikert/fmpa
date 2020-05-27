@@ -1,2 +1,2 @@
-from fmpa.main import Company
+from fmpa.main import FMPA.Company
 import main

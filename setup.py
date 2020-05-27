@@ -8,7 +8,7 @@ setup(
   author = "RAPHAEL FEIKERT",
   author_email = 'r.feikert@yahoo.de',
   url = 'https://github.com/raphaelfeikert/fmpa',   
-  download_url = 'https://github.com/raphaelfeikert/fmpa/archive/v_05.tar.gz',    
+  download_url = 'https://github.com/raphaelfeikert/fmpa/archive/v0.5.tar.gz',    
   install_requires=['requests'],
   classifiers=[
     'Development Status :: 3 - Alpha',      
