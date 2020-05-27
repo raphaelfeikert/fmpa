@@ -5,6 +5,7 @@ setup(
   version = '0.5',      
   license='MIT',        
   description = 'wrapper for the financial modelling prep api',   
+  author = "RAPHAEL FEIKERT"
   url = 'https://github.com/raphaelfeikert/fmpa',   
   download_url = 'https://github.com/raphaelfeikert/fmpa/archive/v_05.tar.gz',    
   install_requires=[            
