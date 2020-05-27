@@ -12,7 +12,12 @@ from fmpa import FMPA
 
 api_key = "your api-key"
 api = FMPA(api_key)
+
+#get all tradable tickersymbols
+universe = api.universe() 
+
 apple = api.company("AAPL")
 
-apple.inc_stmt()
+#get apples discounted cashflow value
+apple.dcf_val()
 ```
