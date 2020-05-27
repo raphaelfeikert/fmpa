@@ -2,11 +2,11 @@ from distutils.core import setup
 setup(
   name = 'fmpa',         
   packages = ['fmpa'],   
-  version = '0.4',      
+  version = '0.5',      
   license='MIT',        
   description = 'wrapper for the financial modelling prep api',   
   url = 'https://github.com/raphaelfeikert/fmpa',   
-  download_url = 'https://github.com/raphaelfeikert/fmpa/archive/v_04.tar.gz',    
+  download_url = 'https://github.com/raphaelfeikert/fmpa/archive/v_05.tar.gz',    
   install_requires=[            
           'requests',
           'numpy',

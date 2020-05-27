@@ -1,93 +1,92 @@
-import requests
-import pandas as pd
-import numpy as np
-https://financialmodelingprep.com/api/v3/profile/AAPL?apikey=3b4daf218714762f63ff568c86e2083c
+import json
+from requests_toolbelt import sessions
+ 
+class FMPA(object):
 
+    def __init__(self, key):
+        self.key = key
 
-def endpoint_handler(endpoint):
-        base_url = "https://financialmodellingprep.com/api/v3/"
-        response=requests.get(base_url+endpoint)
-        results=json.loads(response.text)
-        if response.status_code==200:
-            return results
-        elif response.status_code==404:
-            print("Not found!")
+    def company(self, symb):
+        return self.Company(self, symb)
 
-def get_stocks():
-    response=endpoint_handler("company/stock/list")
-    symb_list=[{i["name"]:i["symbol"]} for i in response["symbolsList"]]
-    return symb_list
+    
+    class Company(object):
+        
+        def __init__(self, outer, symb):
+            self.outer = outer
+            self.symb = symb
+            
+        @property
+        def getkey(self):
+            return self.outer.key
 
-def get_symbol(stock):
-    response=endpoint_handler("company/stock/list")
-    symbol=[i['symbol'] for i in response["symbolsList"] if i['name']==stock]
-    return symbol[0]
+        #functions not depending on specific stock:
+    
+        def endpt(self, url):
+            
+            baseurl = "https://financialmodellingprep.com/api/v3/"
+            http = sessions.BaseUrlSession(base_url = baseurl)        
+            path = (url + "?apikey={}").format(self.symb, self.getkey)
+            #print(path)
+            result = http.get(path).text
+            return json.loads(result)
 
-def get_symbols():
-    response=endpoint_handler("company/stock/list")
-    symbols=[i['symbol'] for i in response["symbolsList"]]
-    return symbols
+        
+        #functions depending on specific stock:
 
+        def inc_stmt(self):
+            path = "financials/income-statement/{}"
+            result = self.endpt(path)
+            return result
 
-class Company:
+        def bal_stmt(self):
+            path = "financials/balance-sheet-statement/{}"
+            result = self.endpt(path)
+            return result
 
-    def __init__(self,symb):
-        self.symb=symb
+        def cf_stmt(self):
+            path = "financials/cash-flow-statement/{}"
+            result = self.endpt(path)
+            return result
 
-    #financial statements:
-    def inc_stmt(self):
-        response = endpoint_handler("financials/income-statement/{}?apikey={}".format(self.symb, TOKEN))
-        return response
+        def fin_ratio(self):
+            path = "financial-ratios/{}"
+            result = self.endpt(path)
+            return result
 
-    def bal_stmt(self, df=None):
-        response = endpoint_handler("financials/balance-sheet-statement/{}?apikey={}".format(self.symb, TOKEN))
-        if df==None:
-            return response['financials']
-        else:
-            return make_df(response['financials'])
+        def ent_val(self):
+            path = "enterprise-value/{}"
+            result = self.endpt(path)
+            return result
 
-    def cf_stmt(self):
-        response = endpoint_handler("financials/cash-flow-statement/{}?apikey={}".format(self.symb, TOKEN))
-        return response
+        def ent_keymetr(self):
+            path = "company-key-metrics/{}"
+            result = self.endpt(path)
+            return result
 
-    #financial ratios:
-    def fin_ratios(self):
-        response = endpoint_handler("financial-ratios/{}?apikey={}".format(self.symb, TOKEN))
-        return response
+        def fin_grth(self):
+            path = "financial-statement-growth/{}"
+            result = self.endpt(path)
+            return result
 
-    #company-enterprise-value:
-    def entpr_val(self):
-        response = endpoint_handler("enterprise-value/{}?apikey={}".format(self.symb, TOKEN))
-        return response
+        def rating(self):
+            path = "company/rating/{}"
+            result = self.endpt(path)
+            return result
 
-    #company key metrics:
-    def entpr_keymetr(self):
-        response = endpoint_handler("company-key-metrics/{}?apikey={}".format(self.symb, TOKEN)))
-        return response
+        def dcf(self):
+            path = "company/discounted-cash-flow/{}"
+            result = self.endpt(path)
+            return result
 
-    #company financial growth:
-    def fin_grth(self):
-        response = endpoint_handler("financial-statement-growth/{}?apikey={}".format(self.symb, TOKEN))
-        return response
+        def dcf_hist(self):
+            path = "company/historical-discounted-cash-flow/{}"
+            print(path)
+            result = self.endpt(path)
+            return result
 
-    #company rating:
-    def rating(self):
-        response = endpoint_handler("company/rating/{}?apikey={}".format(self.symb, TOKEN))
-        return response
-
-    #discounted cash flow value:
-    def dcf(self):
-        response = endpoint_handler("company/discounted-cash-flow/{}?apikey={}".format(self.symb, TOKEN))
-        return response
-
-    #historical dcf:
-    def hist_dcf(self):
-        response = endpoint_handler("company/historical-discounted-cash-flow/{}?apikey={}".format(self.symb, TOKEN))
-        return response
-
-    #realtime stockprice:
-    def rlt_price(self):
-        response = endpoint_handler("stock/real-time-price/{}?apikey={}".format(self.symb, TOKEN))
-        return response['price']
-
+        def rlt_price(self):
+            path = "stock/real-time-price/{}"
+            result = self.endpt(path)
+            return result
 
