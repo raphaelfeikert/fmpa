@@ -7,6 +7,9 @@
 ## Basic usage:
 
 ```python
+
+import fmpa
+
 api_key = "your api-key"
 
 api = FMPA(api_key)
