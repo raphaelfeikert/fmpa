@@ -1,4 +1,4 @@
-# fmpa is a Python wrapper for the [Financial Modelling Prep API](https://financialmodelingprep.com/)
+# fmpa is a Python wrapper for the [Financial Modelling Prep API](https://financialmodelingprep.com/) (under construction)
 
 ## Installation
 ```console
