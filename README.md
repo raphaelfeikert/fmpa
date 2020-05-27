@@ -11,9 +11,7 @@
 from fmpa import FMPA
 
 api_key = "your api-key"
-
 api = FMPA(api_key)
-
 apple = api.company("AAPL")
 
 apple.inc_stmt()
